@@ -40,7 +40,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
-            type=raw,value{{date 'YYYYMMDD'}}
+            type=raw,value={{date 'YYYYMMDD'}}
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
