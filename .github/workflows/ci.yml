@@ -90,7 +90,7 @@ jobs:
       - name: Display structure of downloaded files
         run: ls -R k8s/manifests
 
-      - name: Promote to upper env
+      - name: Check out config repo
         run: |
           echo "promoting into upper environment!"
           echo "gh sha: ${{ github.sha }}"
@@ -100,7 +100,17 @@ jobs:
           cd $CONFIG_REPO_NAME
           echo "checkout main branch"
           git checkout main
-          echo "updating image tag in values file"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: manifests
+          path: k8s/manifests/dekorate-demo
+
+      - name: Display structure of downloaded files
+        run: ls -R k8s/manifests
+
+      - name: updating image tag in manifest
+        run: |
           echo "new tag is: ${{ github.sha }}"
           sed -i "s,image:.*,image:\ ${{ env.REGISTRY }}/${{ github.repository }}/${{ github.sha }}," k8s/manifests/dekorate-demo/kubernetes.yml
           cat k8s/manifests/dekorate-demo/kubernetes.yml
