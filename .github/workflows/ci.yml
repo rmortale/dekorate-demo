@@ -71,6 +71,10 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           #tags: ${{ env.REGISTRY }}/${{ github.repository }}:${{github.sha}}
+
+      - run: |
+          echo "promoting into upper environment!"
+          echo "tags: ${{ steps.meta.outputs.tags }}"
   
   promote-to-upper-environment:
     runs-on: ubuntu-latest
