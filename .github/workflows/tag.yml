@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - id: docker-publish
-        uses: pangzineng/Github-Action-One-Click-Docker@1.1.1
+        uses: pangzineng/Github-Action-One-Click-Docker@master
         with:
           DOCKER_USERNAME: ${{ github.actor }}
           DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
