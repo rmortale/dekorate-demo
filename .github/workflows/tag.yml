@@ -1,0 +1,21 @@
+name: on push to main
+
+on:
+  push:
+
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      - id: docker-publish
+        uses: bitovi/github-actions-docker-publish@main
+        with:
+          docker_username: ${{ github.actor }}
+          docker_password: ${{ secrets.GITHUB_TOKEN }}

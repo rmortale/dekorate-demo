@@ -82,14 +82,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-and-push
     steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: manifests
-          path: k8s/manifests/dekorate-demo
-
-      - name: Display structure of downloaded files
-        run: ls -R k8s/manifests
-
       - name: Check out config repo
         run: |
           echo "promoting into upper environment!"
@@ -117,7 +109,7 @@ jobs:
 ##          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," k8s/helm-values/k3d-dev-values.yaml
 ##          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," k8s/helm-values/k3d-ora-cluster-values.yaml
 #
-#          git add . && git commit -m "update image tag"
-#          git push --all origin
+          git add . && git commit -m "update image tag"
+          git push --all origin
 
 
