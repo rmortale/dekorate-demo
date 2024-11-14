@@ -102,7 +102,7 @@ jobs:
           echo "checkout main branch"
           git checkout main
           mkdir -p k8s/dekorate-demo
-          cp ../k8s* k8s/dekorate-demo
+          cp ../k8s/* k8s/dekorate-demo/
           find ../k8s
           git add . && git commit -m "update image tag"
           git push --all origin
