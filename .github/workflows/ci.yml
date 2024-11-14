@@ -66,10 +66,6 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: write tags to file
-        run: |
-          echo $DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS
-
       - name: save manifests
         uses: actions/upload-artifact@v4
         with:
@@ -101,15 +97,15 @@ jobs:
           name: manifests
           path: k8s/manifests/dekorate-demo
 
-#      - name: updating image tag in manifest
-#        run: |
-#          echo "new tag is: ${{ github.sha }}"
-#          sed -i "s,image:.*,image:\ ${{ env.REGISTRY }}/${{ github.repository }}/${{ github.sha }}," k8s/manifests/dekorate-demo/kubernetes.yml
-#          cat k8s/manifests/dekorate-demo/kubernetes.yml
-###          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," k8s/helm-values/k3d-dev-values.yaml
-###          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," k8s/helm-values/k3d-ora-cluster-values.yaml
-##
-#          git add . && git commit -m "update image tag"
-#          git push --all origin
+      - name: updating image tag in manifest
+        run: |
+          echo "new tag is: ${{ github.sha }}"
+          sed -i "s,image:.*,image:\ ${{ env.REGISTRY }}/${{ github.repository }}/${{ github.sha }}," k8s/manifests/dekorate-demo/kubernetes.yml
+          cat k8s/manifests/dekorate-demo/kubernetes.yml
+##          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," k8s/helm-values/k3d-dev-values.yaml
+##          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," k8s/helm-values/k3d-ora-cluster-values.yaml
+#
+          git add . && git commit -m "update image tag"
+          git push --all origin
 
 
