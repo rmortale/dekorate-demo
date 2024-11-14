@@ -106,7 +106,8 @@ jobs:
         run: |
           ls -R k8s/dekorate-demo
           echo "new tag is: ${{ github.sha }}"
-          
+          git add . && git commit -m "update image tag"
+          git push --all origin
           
           
 
