@@ -104,7 +104,6 @@ jobs:
           cat k8s/manifests/dekorate-demo/kubernetes.yml
 ##          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," k8s/helm-values/k3d-dev-values.yaml
 ##          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," k8s/helm-values/k3d-ora-cluster-values.yaml
-#
           git add . && git commit -m "update image tag"
           git push --all origin
 
