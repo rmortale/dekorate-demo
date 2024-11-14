@@ -36,6 +36,7 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha,prefix={{branch}}-
+            type=sha,format=long,prefix=
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -99,10 +100,15 @@ jobs:
 
       - name: updating image tag in manifest
         run: |
+          ls -l k8s/manifests/dekorate-demo/
           echo "new tag is: ${{ github.sha }}"
-          sed -i "s,image:.*,image:\ ${{ env.REGISTRY }}/${{ github.repository }}/${{ github.sha }}," k8s/manifests/dekorate-demo/kubernetes.yml
-          cat k8s/manifests/dekorate-demo/kubernetes.yml
-          git add . && git commit -m "update image tag"
-          git push --all origin
+          
+          
+          
+
+#          sed -i "s,image:.*,image:\ ${{ env.REGISTRY }}/${{ github.repository }}/${{ github.sha }}," k8s/manifests/dekorate-demo/kubernetes.yml
+#          cat k8s/manifests/dekorate-demo/kubernetes.yml
+#          git add . && git commit -m "update image tag"
+#          git push --all origin
 
 
