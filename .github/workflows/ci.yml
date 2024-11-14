@@ -68,8 +68,7 @@ jobs:
 
       - name: write tags to file
         run: |
-          ALL_TAGS=${{ fromJSON(steps.meta.outputs.tags.json) }}
-          echo $ALL_TAGS
+          echo $DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS
 
       - name: save manifests
         uses: actions/upload-artifact@v4
