@@ -67,15 +67,17 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: tar files for upload
-        run: tar -cvf manifests.tar target/classes/META-INF/dekorate/kubernetes.yml ${{ env.DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS }}
+#      - name: tar files for upload
+#        run: tar -cvf manifests.tar target/classes/META-INF/dekorate/kubernetes.yml ${{ env.DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS }}
 
       - name: save manifests
         uses: actions/upload-artifact@v4
         with:
           name: manifests
           retention-days: 5
-          path: manifests.tar
+          path: |
+            target/classes/META-INF/dekorate/kubernetes.yml
+            ${{ env.DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS }}
 
 
   promote-to-upper-environment:
@@ -97,12 +99,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: manifests
+          merge-multiple: true
           path: k8s/dekorate-demo
 
       - name: updating image tag in manifest
         run: |
-          tar xvf k8s/dekorate-demo/manifests.tar
-          find k8s/dekorate-demo
+          ls -R k8s/dekorate-demo
           echo "new tag is: ${{ github.sha }}"
           
           
