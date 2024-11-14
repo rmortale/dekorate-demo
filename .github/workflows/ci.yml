@@ -68,7 +68,7 @@ jobs:
 
       - name: write tags to file
         run: |
-          ALL_TAGS=${{ fromJSON(steps.meta.outputs.tags) }}
+          ALL_TAGS=${{ fromJSON(steps.meta.outputs.json) }}
           echo $ALL_TAGS
 
       - name: save manifests
