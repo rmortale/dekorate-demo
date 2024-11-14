@@ -100,7 +100,7 @@ jobs:
 
       - name: updating image tag in manifest
         run: |
-          ls -l k8s/manifests/dekorate-demo/
+          find k8s/manifests/dekorate-demo/
           echo "new tag is: ${{ github.sha }}"
           
           
