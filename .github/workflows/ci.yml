@@ -74,8 +74,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: manifests
-          path: target/classes/META-INF/dekorate/kubernetes.yml
           retention-days: 5
+          path: |
+            target/classes/META-INF/dekorate/kubernetes.yml
+            ${{ env.DOCKER_METADATA_OUTPUT_BAKE_FILE_TAGS }}
+          
 
   promote-to-upper-environment:
     runs-on: ubuntu-latest
