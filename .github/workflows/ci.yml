@@ -97,10 +97,6 @@ jobs:
           name: manifests
           path: k8s/manifests/dekorate-demo
 
-      - name: Display structure of downloaded files
-        run: |
-          ls -R k8s/manifests
-
       - name: updating image tag in manifest
         run: |
           echo "new tag is: ${{ github.sha }}"
