@@ -104,7 +104,7 @@ jobs:
           mkdir -p k8s/dekorate-demo
           cp ../k8s/* k8s/dekorate-demo/
           sed -i "s,image:.*,image:\ ${{ env.REGISTRY }}/${{ github.repository }}/${{ github.sha }}," k8s/dekorate-demo/kubernetes.yml
-          NEWTAG=$(cat docker-metadata-action-bake-tags.json | jq '.target."docker-metadata-action".tags[1]' | cut -d':' -f2 | cut -d'"' -f1)
+          NEWTAG=$(cat k8s/dekorate-demo/docker-metadata-action-bake-tags.json | jq '.target."docker-metadata-action".tags[1]' | cut -d':' -f2 | cut -d'"' -f1)
           
           git add . && git commit -m "update image tag to $NEWTAG"
           # retag devt
