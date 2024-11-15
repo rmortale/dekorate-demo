@@ -105,20 +105,11 @@ jobs:
           cp ../k8s/* k8s/dekorate-demo/
           sed -i "s,image:.*,image:\ ${{ env.REGISTRY }}/${{ github.repository }}/${{ github.sha }}," k8s/dekorate-demo/kubernetes.yml
           NEWTAG=$(cat k8s/dekorate-demo/docker-metadata-action-bake-tags.json | jq '.target."docker-metadata-action".tags[1]' | cut -d':' -f2 | cut -d'"' -f1)
-          
           git add . && git commit -m "update image tag to $NEWTAG"
           # retag devt
           git tag -f devt
           git tag $NEWTAG
-          git push --follow-tags origin
-
-        
-          
-          
-
-#          sed -i "s,image:.*,image:\ ${{ env.REGISTRY }}/${{ github.repository }}/${{ github.sha }}," k8s/manifests/dekorate-demo/kubernetes.yml
-#          cat k8s/manifests/dekorate-demo/kubernetes.yml
-#          git add . && git commit -m "update image tag"
-#          git push --all origin
-
+          git push origin devt
+          git push origin $NEWTAG
+          git push --all origin
 
