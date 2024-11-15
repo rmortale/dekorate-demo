@@ -103,9 +103,10 @@ jobs:
           git checkout main
           mkdir -p k8s/dekorate-demo
           cp ../k8s/* k8s/dekorate-demo/
-          find ../k8s
-          
+          sed -i "s,image:.*,image:\ ${{ env.REGISTRY }}/${{ github.repository }}/${{ github.sha }}," k8s/dekorate-demo/kubernetes.yml
+          cat k8s/dekorate-demo/docker-metadata-action-bake-tags.json | jq '.target."docker-metadata-action".tags[1]'
           git add . && git commit -m "update image tag"
+          git tag 
           git push --all origin
 
         
