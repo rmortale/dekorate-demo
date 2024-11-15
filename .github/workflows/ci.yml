@@ -108,8 +108,8 @@ jobs:
           git add . && git commit -m "update image tag to $NEWTAG"
           # retag devt
           git tag -f devt
-          git tag $NEWTAG
           git push origin devt
+          git tag $NEWTAG
           git push origin $NEWTAG
           git push --all origin
 
