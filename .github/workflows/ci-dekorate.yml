@@ -13,7 +13,8 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
-    permissions: write-all
+    permissions:
+      contents: write
 
     steps:
       - name: Check out the repo
@@ -49,3 +50,13 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+      - name: Copy manifests
+        run: |
+          cp target/classes/META-INF/dekorate/kubernetes.yml k8s/
+
+      - name: Commit generated manifests
+        run: |
+          git config --global user.name 'GithubAction'
+          git config --global user.email 'your-username@users.noreply.github.com'
+          git commit -am "generated manifests"
+          git push
