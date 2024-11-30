@@ -1,4 +1,4 @@
-name: ci
+name: ci-flow
 
 on:
   workflow_dispatch:
@@ -21,6 +21,7 @@ jobs:
 
     permissions:
       contents: write
+      packages: write
 
     steps:
       - name: Check out the repo
