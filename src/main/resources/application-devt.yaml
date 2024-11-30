@@ -1,0 +1,9 @@
+
+dekorate:
+  kubernetes:
+    ingress:
+      expose: true
+      host: devt-dekorate.internal
+
+app:
+  greeting: hello from devt
