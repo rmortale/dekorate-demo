@@ -33,12 +33,12 @@ jobs:
           images: |
             ${{ env.REGISTRY }}/${{ github.repository }}
 
-        tags: |
-          type=ref,event=branch
-          type=ref,event=pr
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-          type=sha
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
