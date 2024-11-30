@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: dekorate-demo
+
+dekorate:
+  kubernetes:
+    ingress:
+      expose: true
+      host: def-dekorate.internal
+
+app:
+  greeting: hello from default
