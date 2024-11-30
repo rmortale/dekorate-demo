@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - 'main'
+      - '**'
     tags:
       - 'v*'
   pull_request:
@@ -33,7 +33,6 @@ jobs:
         with:
           images: |
             ${{ env.REGISTRY }}/${{ github.repository }}
-
           tags: |
             type=ref,event=branch
             type=ref,event=pr
@@ -50,6 +49,8 @@ jobs:
 
       - name: Build with Maven
         run: |
+          SHORTSHA=sha-${GITHUB_SHA::7}
+          mvn versions:set -DnewVersion=$SHORTSHA
           mvn --file pom.xml --no-transfer-progress --batch-mode clean package
 
       - name: Set up Docker Buildx
