@@ -49,6 +49,7 @@ jobs:
 
       - name: Build with Maven
         run: |
+          env
           SHORTSHA=${GITHUB_SHA::7}
           mvn versions:set -DnewVersion=$SHORTSHA
           mvn --file pom.xml --no-transfer-progress --batch-mode clean package
