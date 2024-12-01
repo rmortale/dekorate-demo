@@ -52,7 +52,7 @@ jobs:
           env
           SHORTSHA=${GITHUB_SHA::7}
           mvn versions:set -DnewVersion=$SHORTSHA
-          mvn --file pom.xml --no-transfer-progress --batch-mode clean package
+          mvn --file pom.xml -q --no-transfer-progress --batch-mode clean package
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
