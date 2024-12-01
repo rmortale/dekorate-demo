@@ -30,7 +30,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-          image: ghcr.io/rmortale/dekorate-demo:28a3053
+          image: ghcr.io/rmortale/dekorate-demo:1.0.0-SNAPSHOT
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
