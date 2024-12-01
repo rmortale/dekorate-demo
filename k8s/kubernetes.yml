@@ -4,25 +4,25 @@ kind: Deployment
 metadata:
   annotations:
     app.dekorate.io/vcs-url: https://github.com/rmortale/dekorate-demo
-    app.dekorate.io/commit-id: 4bfb18143e19667e1499b5ddf606af927b389a79
+    app.dekorate.io/commit-id: db77f7434b438ef432de5929bc9b690713998632
   labels:
     app.kubernetes.io/name: dekorate-demo
-    app.kubernetes.io/version: 4bfb181
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
   name: dekorate-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
+      app.kubernetes.io/version: 1.0.0-SNAPSHOT
       app.kubernetes.io/name: dekorate-demo
-      app.kubernetes.io/version: 4bfb181
   template:
     metadata:
       annotations:
         app.dekorate.io/vcs-url: https://github.com/rmortale/dekorate-demo
-        app.dekorate.io/commit-id: 4bfb18143e19667e1499b5ddf606af927b389a79
+        app.dekorate.io/commit-id: db77f7434b438ef432de5929bc9b690713998632
       labels:
+        app.kubernetes.io/version: 1.0.0-SNAPSHOT
         app.kubernetes.io/name: dekorate-demo
-        app.kubernetes.io/version: 4bfb181
     spec:
       containers:
         - env:
@@ -30,7 +30,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-          image: ghcr.io/rmortale/dekorate-demo:4bfb181
+          image: ghcr.io/rmortale/dekorate-demo:1.0.0-SNAPSHOT
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -63,10 +63,10 @@ kind: Ingress
 metadata:
   annotations:
     app.dekorate.io/vcs-url: https://github.com/rmortale/dekorate-demo
-    app.dekorate.io/commit-id: 4bfb18143e19667e1499b5ddf606af927b389a79
+    app.dekorate.io/commit-id: db77f7434b438ef432de5929bc9b690713998632
   labels:
     app.kubernetes.io/name: dekorate-demo
-    app.kubernetes.io/version: 4bfb181
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
   name: dekorate-demo
 spec:
   rules:
@@ -78,7 +78,7 @@ spec:
                 name: dekorate-demo
                 port:
                   name: http
-            path: /hello
+            path: /
             pathType: Prefix
 ---
 apiVersion: v1
@@ -86,10 +86,10 @@ kind: Service
 metadata:
   annotations:
     app.dekorate.io/vcs-url: https://github.com/rmortale/dekorate-demo
-    app.dekorate.io/commit-id: 4bfb18143e19667e1499b5ddf606af927b389a79
+    app.dekorate.io/commit-id: db77f7434b438ef432de5929bc9b690713998632
   labels:
     app.kubernetes.io/name: dekorate-demo
-    app.kubernetes.io/version: 4bfb181
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
   name: dekorate-demo
 spec:
   ports:
@@ -99,5 +99,5 @@ spec:
       targetPort: 8080
   selector:
     app.kubernetes.io/name: dekorate-demo
-    app.kubernetes.io/version: 4bfb181
+    app.kubernetes.io/version: 1.0.0-SNAPSHOT
   type: ClusterIP
