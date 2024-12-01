@@ -75,6 +75,7 @@ jobs:
 
       - name: Copy manifests
         run: |
+          SHORTSHA=${GITHUB_SHA::7}
           cp target/classes/META-INF/dekorate/kubernetes.yml k8s/
           sed -ie "s%image: ${{ env.REGISTRY }}/${{ github.repository }}:1.0.0-SNAPSHOT%image: ${{ env.REGISTRY }}/${{ github.repository }}:$SHORTSHA%" k8s/kubernetes.yml
 
