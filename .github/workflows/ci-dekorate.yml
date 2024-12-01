@@ -49,9 +49,9 @@ jobs:
 
       - name: Build with Maven
         run: |
-          env
+          #env
           SHORTSHA=${GITHUB_SHA::7}
-          mvn --file pom.xml -q versions:set -DnewVersion=1.0.0-SNAPSHOT
+          #mvn --file pom.xml -q versions:set -DnewVersion=1.0.0-SNAPSHOT
           mvn --file pom.xml -q clean package
 
       - name: Set up Docker Buildx
@@ -76,14 +76,8 @@ jobs:
       - name: Copy manifests
         run: |
           cp target/classes/META-INF/dekorate/kubernetes.yml k8s/
+          sed -ie "s%image: ${{ env.REGISTRY }}/${{ github.repository }}:1.0.0-SNAPSHOT%image: ${{ env.REGISTRY }}/${{ github.repository }}:$SHORTSHA%" k8s/kubernetes.yml
 
       - uses: EndBug/add-and-commit@v7
         with:
           default_author: github_actions
-
-#      - name: Commit generated manifests
-#        run: |
-#          git config --global user.name 'GithubAction'
-#          git config --global user.email 'your-username@users.noreply.github.com'
-#          git commit -am "generated manifests"
-#          git push
