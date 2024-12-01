@@ -51,7 +51,7 @@ jobs:
         run: |
           env
           SHORTSHA=${GITHUB_SHA::7}
-          mvn --file pom.xml -q versions:set -DnewVersion=$SHORTSHA
+          mvn --file pom.xml -q versions:set -DnewVersion=1.0.0-SNAPSHOT
           mvn --file pom.xml -q clean package
 
       - name: Set up Docker Buildx
