@@ -1,6 +1,6 @@
 spring:
   application:
-    name: dekorate-demo
+    name: dekoratedemo
 
 dekorate:
   kubernetes:
